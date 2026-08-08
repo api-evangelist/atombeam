@@ -1,0 +1,32 @@
+generated: '2026-08-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.atombeamtech.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 27 11:36:10 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: acp.atombeamtech.com
+  https: true
+  tls_version: TLSv1.3
+  hsts: false
+  note: AtomBeam Customer Portal SPA (CloudFront); root returns 200
+- host: acg-api.atombeamtech.com
+  https: true
+  tls_version: TLSv1.3
+  hsts: false
+  note: portal backend (AWS API Gateway); every path returns 403 Forbidden
+- host: customersupport.atombeamtech.com
+  https: true
+  tls_version: TLSv1.3
+  hsts: false
+  note: CNAME to Atlassian Jira Service Management; root 302s to a servicedesk login
+domains:
+- domain: atombeamtech.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

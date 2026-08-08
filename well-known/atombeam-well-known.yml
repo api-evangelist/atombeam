@@ -1,0 +1,79 @@
+generated: '2026-08-06'
+method: searched
+source: live probes of /.well-known/ on every AtomBeam host discovered this pass
+notes: >-
+  No /.well-known/ document is served by AtomBeam itself. The only security.txt that
+  answers on an atombeamtech.com name belongs to Atlassian — customersupport.atombeamtech.com
+  is a CNAME onto Atlassian Jira Service Management (saas.atlassian.com) and the file it
+  serves carries "Canonical: https://www.atlassian.com/.well-known/security.txt". It is the
+  SaaS host's policy, not AtomBeam's, so it is recorded here and deliberately NOT saved as
+  atombeam-security.txt and NOT wired as a SecurityTxt or Security pointer.
+hosts:
+  - host: https://www.atombeamtech.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /llms.txt
+        status: 200
+        file: ../llms/atombeam-llms.txt
+        note: real llms.txt — a control path (/this-should-not-exist-xyz123) returns 404, so this is not a soft-200
+  - host: https://acg-api.atombeamtech.com
+    note: production backend of the AtomBeam Customer Portal (AWS API Gateway); every path answers 403 Forbidden
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/agent-card.json
+        status: 403
+      - path: /.well-known/agent.json
+        status: 403
+  - host: https://acp.atombeamtech.com
+    note: AtomBeam Customer Portal ("Codebook Generator") Angular SPA on CloudFront
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        rejected: true
+        reason: SPA catch-all returns the 1676-byte index.html for any extensionless path; not a discovery document
+      - path: /.well-known/api-catalog
+        status: 200
+        rejected: true
+        reason: same SPA catch-all shell
+  - host: https://neurpac.com
+    note: parked/marketing host — answers 200 with the same HTML shell for EVERY path probed, including /openapi.json and /.well-known/agent-card.json; all hits rejected as soft-200
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 200
+        rejected: true
+        reason: text/html body, not an AgentCard
+      - path: /.well-known/security.txt
+        status: 200
+        rejected: true
+        reason: text/html body
+  - host: https://customersupport.atombeamtech.com
+    note: CNAME to Atlassian Jira Service Management; root 302s to a servicedesk login
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        third_party: atlassian
+        canonical: https://www.atlassian.com/.well-known/security.txt
+        rejected: true
+        reason: served by the SaaS host, not by AtomBeam — not credited to AtomBeam
