@@ -1,8 +1,19 @@
 aid: atombeam
 name: AtomBeam
-description: 'AtomBeam is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  AtomBeam Technologies is a Moraga, California software company founded in 2017 that sells
+  "Compaction" — a machine-learning approach to shrinking machine-generated data that replaces
+  recurring bit-level patterns with codewords drawn from a trained codebook, rather than
+  compressing bytes. Its Neurpac product is an on-premises, protocol-agnostic bidirectional
+  compaction tunnel that reduces IoT, telemetry and file payloads by roughly 75% while
+  encrypting and obfuscating them in transit; Neurcom and PCM are earlier-stage research
+  products. AtomBeam licenses the software to IoT device and gateway makers, satellite and
+  LPWAN operators, telcos, and the US Department of Defense, and has raised capital through
+  Regulation A and Regulation CF crowdfunding on StartEngine. There is no public developer
+  API program: the customer-facing surface is the login-gated AtomBeam Customer Portal
+  (codebook generation and simulation) plus a Jira Service Management support portal.
 url: https://raw.githubusercontent.com/api-evangelist/atombeam/refs/heads/main/apis.yml
+image: https://cdn.prod.website-files.com/65ee960bca00890dd416e95c/65f8f36d0922a632a016240d_logo.png
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,6 +23,14 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Data Compression
+- Internet of Things
+- Edge Computing
+- Satellite Communications
+- Machine Learning
+- Data Management
+- Defense
+- Telemetry
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +39,68 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://www.atombeamtech.com/
+- type: Blog
+  url: https://www.atombeamtech.com/blog
+- type: Support
+  url: https://customersupport.atombeamtech.com/
+- type: Login
+  url: https://acp.atombeamtech.com/
+- type: TermsOfService
+  url: https://www.atombeamtech.com/utility/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.atombeamtech.com/utility/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/AtomBeam
+- type: LLMsTxt
+  url: llms/atombeam-llms.txt
+- type: DomainSecurity
+  url: security/atombeam-domain-security.yml
+- type: FAQ
+  url: https://www.atombeamtech.com/faq
+- type: Demo
+  url: https://www.atombeamtech.com/demo
+- type: Products
+  url: https://www.atombeamtech.com/products/overview
+- type: Partners
+  url: https://www.atombeamtech.com/partners/partners
+- type: Newsroom
+  url: https://www.atombeamtech.com/about/newsroom
+- type: InvestorRelations
+  url: https://www.atombeamtech.com/investor-hub
+- type: Crowdfunding
+  url: https://www.startengine.com/offering/atombeam
+- type: SecondaryMarket
   url: https://forgeglobal.com/atombeam_stock/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/atombeam
+- type: YouTube
+  url: https://www.youtube.com/channel/UCVR_l_tlXbNgEsUwSlKSgRg
+x-enrichment:
+  date: '2026-08-06'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: customer-only-docs
+  detail: >-
+    AtomBeam runs a real production API — acg-api.atombeamtech.com, the AWS API Gateway
+    backend of its "Codebook Generator" customer portal, whose Angular bundle names the
+    codebooks/, datasets/, companies/, simulation/, reports/, users/, categories/,
+    notifications/ and tracking/ collections — but it answers 403 Forbidden on every path
+    including /openapi.json, and the guides that would document it live inside a Jira
+    Service Management portal that 302s to a login; the only public technical collateral
+    is a set of Neurpac datasheet PDFs behind email-capture download forms.
+  evidence:
+    - url: https://acg-api.atombeamtech.com/openapi.json
+      status: 403
+    - url: https://acg-api.atombeamtech.com/
+      status: 403
+    - url: https://customersupport.atombeamtech.com/
+      status: 302
+    - url: https://www.atombeamtech.com/llms.txt
+      status: 200
+    - url: https://www.atombeamtech.com/.well-known/agent-card.json
+      status: 404
+  checked: '2026-08-06'
