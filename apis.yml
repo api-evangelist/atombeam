@@ -50,7 +50,7 @@ tags:
 - IoT
 - Edge Computing
 - Satellite Communications
-- Machine-Learning
+- Machine Learning
 - Data Management
 - Defense
 - Telemetry
@@ -64,6 +64,7 @@ tags_raw:
 - Data Management
 - Defense
 - Telemetry
+- Machine-Learning
 apis: []
 maintainers:
 - FN: Kin Lane
